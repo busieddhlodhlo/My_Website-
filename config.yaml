@@ -1,6 +1,6 @@
 baseURL: https://busie-portfolio.netlify.app/
 languageCode: en-us
-title: Forty
+title: Portfolio Website for Busie
 theme: forty
 googleAnalytics: ''
 disqusShortname: ''
@@ -13,7 +13,7 @@ params:
     title: Hi, my name is Busie
   blog: {}
   contact:
-    address:
+    address: Regent's Park
       - city: City, ST 00000
         country: Country
         street: Street
@@ -21,7 +21,7 @@ params:
     buttonClear: Clear
     buttonSend: Send message
     email:
-      - email: example@domain.com
+      - email: bdhlodhlo.mfa2022@london.edu
         title: Email
     enable: yes
     phone:
@@ -56,7 +56,7 @@ params:
         url: https://www.github.com
       - icon: fa-linkedin
         label: LinkedIn
-        url: https://www.linkedin.com
+        url: https://www.linkedin.com/in/sibusisiwe-dhlodhlo/
   image: ''
   name: Your name
   navigation:
@@ -81,13 +81,13 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg
+      - image: lbs.jpg
         subtitle: Short biography
         title: About me
         url: blogs/aliquam
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
-        title: Tempus
+        title: Risk Return od DJIA stocks
         url: blogs/tempus
       - image: pic03.jpg
         subtitle: Lorem Etiam Nullam
