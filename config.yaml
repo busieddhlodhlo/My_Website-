@@ -13,10 +13,10 @@ params:
     title: Hi, my name is Busie
   blog: {}
   contact:
-    address: Regent's Park
+    address: 
       - city: City, ST 00000
         country: Country
-        street: Street
+        street: Regents Park
         title: Address
     buttonClear: Clear
     buttonSend: Send message
