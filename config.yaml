@@ -64,7 +64,7 @@ params:
       - name: Let's start!
         url: '#'
 #    button2:
-#      - name: Blogs
+#      - name: Background
 #        url: blogs
     links:
       - name: Home
