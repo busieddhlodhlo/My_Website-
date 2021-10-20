@@ -3,10 +3,7 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:42:51-05:00"
-description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
-  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
-  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
-  consequat tincidunt. Vivamus et sagittis tempus.
+description: I come from Plumtree, a small town in Zimbabwe. I studied Finance with Accounting Minor at Solusi University and went on to sit for CFA Level One soon after graduation.  During my undergraduate term, I was part of my school’s CFA Equity Research Challenge Team. We researched on a Zimbabwean-domiciled business operating in the aquaculture industry and presented an investment recommendation before a panel of judges.  My first post-graduation job was in Alternative Investments before which I had worked in the NPO sector while studying simultaneously.  I also worked in an agricultural engineering company where I helped create financial products for its clients.  During this time I volunteered at a local home-school where I had a fulfilling time learning and reflecting with young learners.  I would like to work in Investment Management spaces where I can contribute to improving the livelihoods of many after completing the Masters programme at LBS.
 draft: false
 keywords: ""
 slug: aliquam
