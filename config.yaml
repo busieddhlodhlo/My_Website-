@@ -97,14 +97,15 @@ params:
         subtitle: An analysis of Tfl bike sharing in the UK
         title: UK Tfl bike rentals
         url: blogs/bikes
+#      - image: pic06.jpg
+#        subtitle: And some fun!
+#        title: Nature
+#        url: blogs/ipsum      
       - image: write.jpg
         subtitle: Using words to shape thoughts on Medium
         title: Read my thoughts?
         url: https://medium.com/@busiedlodlo/
-#      - image: pic06.jpg
-#        subtitle: And some fun!
-#        title: Nature
-#        url: blogs/ipsum
+
   two:
     buttonText: Get Started
     enable: yes
