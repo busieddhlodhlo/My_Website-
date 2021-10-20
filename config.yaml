@@ -81,13 +81,13 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: beach.jpg
+      - image: professional.jpg
         subtitle: Short biography
         title: About me
         url: blogs/aliquam
-      - image: pic02.jpg
+      - image: padenga.jpg
         subtitle: Feugiat Amet Tempus
-        title: Risk Return od DJIA stocks
+        title: CFA Equity Research Challenge
         url: blogs/tempus
       - image: pic03.jpg
         subtitle: Lorem Etiam Nullam
