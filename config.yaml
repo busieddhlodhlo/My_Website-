@@ -97,10 +97,10 @@ params:
         subtitle: An analysis of Tfl bike sharing in the UK
         title: UK Tfl bike rentals
         url: blogs/bikes
-#      - image: pic05.jpg
-#        subtitle: Ipsum Dolor Sit Amet
-#        title: Consequat
-#        url: blogs/ipsum
+      - image: write.jpg
+        subtitle: Using words to shape thoughts on Medium
+        title: Reading & writing
+        url: https://medium.com/@busiedlodlo/
 #      - image: pic06.jpg
 #        subtitle: Feugiat Amet Tempus
 #        title: Etiam
