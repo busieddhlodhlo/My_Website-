@@ -89,10 +89,10 @@ params:
         subtitle: I co-authored a research report on a publicly listed company operating in the aquaculture industry.
         title: CFA Equity Research Challenge
         url: blogs/tempus
-      - image: pic03.jpg
-        subtitle: Lorem Etiam Nullam
-        title: Magna
-        url: blogs/vaccination
+      - image: riskret.jpg
+        subtitle: An analysis of the Dow Jone risk return metrics
+        title: Dow Jone Risk Return
+        url: https://busie-portfolio.netlify.app/blogs/risk_return/
       - image: pic04.jpg
         subtitle: Nisl Sed Aliquam
         title: Ipsum
