@@ -93,10 +93,10 @@ params:
         subtitle: An analysis of the JDIA risk return metrics
         title: Dow Jones Risk Return
         url: https://busie-portfolio.netlify.app/blogs/risk_return/
-      - image: pic04.jpg
-        subtitle: Nisl Sed Aliquam
-        title: Ipsum
-        url: blogs/vaccination
+      - image: bikes.jpg
+        subtitle: Looking into Tfl bike sharing in the UK
+        title: Bike rentals
+        url: blogs/bikes
 #      - image: pic05.jpg
 #        subtitle: Ipsum Dolor Sit Amet
 #        title: Consequat
