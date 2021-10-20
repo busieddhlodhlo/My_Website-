@@ -10,6 +10,7 @@ description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis mag
 draft: false
 keywords: ""
 slug: aliquam
+image: selfpic.jpg
 title: About me
 ---
 ## Bio
