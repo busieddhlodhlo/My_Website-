@@ -3,13 +3,13 @@ categories:
 - "" #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
 - ""
 date: "2021-09-30"
-description: Analysis of movie rentals # the title that will show up once someone gets to this page
+description: Vaccination # the title that will show up once someone gets to this page
 draft: false
 image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
 
 keywords: ""
-slug: movies # slug is the shorthand URL address... no spaces plz
-title: Analysis of movie rentals
+slug: vaccination # slug is the shorthand URL address... no spaces plz
+title: Analysis of Vaccination in the U.S.
 ---
 
 
@@ -28,174 +28,77 @@ knitr::opts_chunk$set(
   fig.align = "center"
 )
 ```
-```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
-library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
-library(mosaic)
-library(ggthemes)
-library(lubridate)
-library(fivethirtyeight)
-library(here)
-library(skimr)
-library(janitor)
-library(vroom)
-library(tidyquant)
-library(rvest)
-library(kableExtra)
-library(ggrepel)
-# to scrape wikipedia page
+
+# Challenge 1: Replicating a chart
+
+The purpose of this exercise is to reproduce a plot using your `dplyr` and `ggplot2` skills. Read the article [The Racial Factor: There's 77 Counties Which Are Deep Blue But Also Low-Vaxx. Guess What They Have In Common?](https://acasignups.net/21/07/18/racial-factor-theres-77-counties-which-are-deep-blue-also-low-vaxx-guess-what-they-have) and have a look at the attached figure.
+
+
+
+
+```{r, echo=FALSE, cache=TRUE}
+
+# Download CDC vaccination by county
+cdc_url <- "https://data.cdc.gov/api/views/8xkx-amqh/rows.csv?accessType=DOWNLOAD"
+vaccinations <- vroom(cdc_url) %>% 
+  janitor::clean_names() %>% 
+  filter(fips != "UNK") # remove counties that have an unknown (UNK) FIPS code
+
+# Download County Presidential Election Returns
+# https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ
+election2020_results <- vroom(here::here("data", "countypres_2000-2020.csv")) %>% 
+  janitor::clean_names() %>% 
+  
+  # just keep the results for the 2020 election
+  filter(year == "2020") %>% 
+  
+  # change original name county_fips to fips, to be consistent with the other two files
+  rename (fips = county_fips)
+
+# Download county population data
+population_url <- "https://www.ers.usda.gov/webdocs/DataFiles/48747/PopulationEstimates.csv?v=2232"
+population <- vroom(population_url) %>% 
+  janitor::clean_names() %>% 
+  
+  # select the latest data, namely 2019
+  select(fips = fip_stxt, pop_estimate_2019) %>% 
+  
+  # pad FIPS codes with leading zeros, so they are always made up of 5 characters
+  mutate(fips = stringi::stri_pad_left(fips, width=5, pad = "0"))
+
 ```
-# Analysis of movies- IMDB dataset
-
-We will look at a subset sample of movies, taken from the [Kaggle IMDB 5000 movie dataset](https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset)
-
-```{r,load_movies, warning=FALSE, message=FALSE}
-movies <- read_csv(here::here("movies.csv"))
-glimpse(movies)
-
-```
-
-
-## Extra Info
-Besides the obvious variables of `title`, `genre`, `director`, `year`, and `duration`, the rest of the variables are as follows:
-
--   `gross` : The gross earnings in the US box office, not adjusted for inflation
--   `budget`: The movie's budget
--   `cast_facebook_likes`: the number of facebook likes cast members received
--   `votes`: the number of people who voted for (or rated) the movie in IMDB
--   `reviews`: the number of reviews for that movie
--   `rating`: IMDB average rating
-
-## Relevant Questions:
-
--   Are there any missing values (NAs)? Are all entries distinct or are there duplicate entries?
 
 ```{r}
-skimr::skim(movies) #To check for missing observations
+results_cleaned <- election2020_results %>% 
+  filter(candidate=="DONALD J TRUMP", mode=="TOTAL") %>% 
+  select(fips, candidatevotes,totalvotes) %>% 
+  mutate(percentage_trump=candidatevotes/totalvotes*100) %>% 
+  select(-candidatevotes,-totalvotes)
 
-glimpse(movies) #To check for duplicate values
+vaccinations_cleaned <- vaccinations %>% 
+  filter(date == "07/04/2021") %>% 
+  mutate(pct_vaccinated=case_when(
+    recip_state %in% c("CA", "GA", "IA", "MI", "TX") ~ administered_dose1_pop_pct,
+    T ~ series_complete_pop_pct)) %>% 
+  select(fips, pct_vaccinated) %>% 
+  filter(pct_vaccinated > 0.0)
+
+my_data <- results_cleaned %>% 
+  left_join(population, by="fips") %>% 
+  left_join(vaccinations_cleaned,by="fips")
+
+ggplot(my_data, aes(x=percentage_trump, y=pct_vaccinated)) +
+  geom_smooth(method = "lm", se=FALSE, color="blue", formula = y ~ x, linetype = "dashed") +
+  geom_point(size=0.5) + #Adjusting point size to 0.5
+geom_point(aes(size=pop_estimate_2019), colour='blue', alpha=0.25, show.legend = FALSE)+
+  labs(title = "COVID-19 VACCINATION LEVELS OUT OF TOTAL POPULATION BY COUNTY", subtitle = "(most states based on FULLY vaccinated only; CA, GA, IA, MI & TX based on total doses administered)
+       Data via Centers for Disease Control, COVID Act Now, state health depts",
+       x = "2020 Trump Vote %",
+       y = "% of Total Population Vaccinated") + #Map size of points to 2019 population size 
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  scale_x_continuous(labels = scales::percent_format(scale = 1))
+
 ```
 
-There are no missing values. Not all entries are distinct, since there are duplicate entries for (for instance) the genre, year and director.
-
-
-## Summary of Top Genres
-
-```{r}
-# Count movies by genre
-movies %>%
-    group_by(genres) %>%
-    count(sort=TRUE) %>% 
-    kable(format = "html")
-   
-```
-
-
-
-## Gross Earnings and Return on Budget
-
-
-
-```{r}
-# Table with average gross earnings and budget
-movies %>% 
-  group_by(genre) %>% 
-  summarise(average_gross_earning=mean(gross),
-            average_budget=mean(budget)) %>%
-  kable() %>% 
-    kable_styling()
-
-# Create new variable for return on budget  
-movies <- movies %>%
-  mutate(return_on_budget = gross/budget)
-
-# Check new variable
-glimpse(movies)
-
-# Final table which shows return on budget, in descending order
-movies %>% 
-  group_by(genre) %>% 
-  summarize(average_gross_earning=mean(gross),
-            average_budget=mean(budget),
-            average_return_on_budget=average_gross_earning/average_budget) %>% 
-  arrange(desc(average_return_on_budget)) %>% 
-  kable() %>% 
-  kable_styling()
-```
-
-## Top Directors
-
-```{r}
-movies %>% 
-  group_by(director) %>% 
-  summarise(total_gross=sum(gross),
-            mean_gross=mean(gross),
-            median_gross=median(gross),
-            sd_gross=sd(gross))%>% 
-  arrange(desc(total_gross)) %>% 
-  slice_max(order_by = total_gross, n=15) %>% # Top 15
-  kable() %>% 
-  kable_styling()
-```
-
-## Ratings Distribution
-
-```{r}
-# Table that contains mean, min, max, median and SD
-movies %>% 
-  group_by(genre) %>% 
-  summarise(mean_rating=mean(rating),
-            min_rating=min(rating),
-            max_rating=max(rating),
-            median_rating=median(rating),
-            sd_rating=sd(rating)) %>% 
-  arrange(desc(mean_rating)) %>% 
-  kable() %>% 
-  kable_styling()
-
-# Density graph
-ggplot(movies, aes(x = rating)) +
-  geom_density() +
-  labs(title = "Distribution of ratings", subtitle = "Density",
-       x = "average IMDB rating",
-       y = "Density") +
-  facet_wrap(vars(genre))+
-  NULL
-```
-
-## Do facebook likes affect Gross Revenue?
-
-
-```{r, gross_on_fblikes}
-ggplot(movies, aes(x = cast_facebook_likes, y = gross)) +
-  geom_point()+
-  labs(title= "Relationship between gross earnings and cast Facebook likes", subtitle="Scatterplot", x= "Number of Facebook likes that the cast has received", y="Gross earnings in the US box office, not adjusted for inflation")
-```
-
-
-Overall, it appears that there is no relationship between the number of Facebook likes that the cast has received and the gross earnings in the US box office, since there are many observations with few likes and low earnings, as well as few likes and high earnings.
-
-## Does budget affect Gross Revenue?
-
-```{r, gross_on_budget}
-ggplot(movies, aes(x = budget, y = gross)) +
-  geom_point()+
-  labs(title= "Relationship between gross earnings and budget", subtitle="Scatterplot", x= "The movie budget", y="Gross earnings in the US box office, not adjusted for inflation")
-```
-
-Overall, it appears that there is a positive relationship between the movie budget and gross earnings in US box office.
-
-## How are IMDB ratings and Gross Revenue related?
-
-```{r, gross_on_rating}
-ggplot(movies, aes(x = rating, y = gross)) +
-  geom_point()+
-  labs(title= "Relationship between IMDB rating and gross earnings by genre", subtitle="Scatterplot", x= "Average IMDB rating", y="Gross earnings in the US box office, not adjusted for inflation")+
-  facet_wrap(vars(genre))
-```
-
-
-Overall, it appears that the relationship between IMDB rating and gross earnings in the US box office differ per genre. For action and adventure movies, for example, there appears to be a positive relationship between IMDB ratings and gross earnings. However, for documentaries and fantasy movies, there appears to be no relationship between IMDB ratings and gross earnings.
-
-## Interesting observations
-
-What is interesting to see in this dataset, is the fact that some genres have a significantly higher average gross earnings than other genres. For example, musicals tend to have significantly lower gross earnings than crime movies. This information could provide insights regarding consumer preferences for certain genres. Moreover, there are several genres with limited observations. For example, there is only one thriller movie and two western movies. As a result, no meaningful statistical conclusions can be drawn on the basis of these figures.
+## Counties with 0s
+Some counties have reported a 0% vaccination rate. As these areas tend to be in highly republican and rural areas, the most probable reason for a reported 0% vaccination rate is not that no one there is vaccinated, but rather that there is little to no reporting done there vis-a-vis vaccination statistics. These areas tend to distrust federal oversight and government intervention at many levels and thus either the denizens of said areas would be unlikely to provide the relevant information to outside parties or lack the infrastructure to accurately collect it.
