@@ -88,7 +88,7 @@ params:
       - image: padenga.png
         subtitle: I co-authored a research report on a publicly listed company operating in the aquaculture industry.
         title: CFA Equity Research Challenge
-        url: blogs/tempus
+        url: https://drive.google.com/file/d/1vtOgU4zUJPehAopv1Jj_XWCsiXAxgvxG/view?usp=sharing
       - image: riskret.jpg
         subtitle: An analysis of the JDIA risk return metrics
         title: Dow Jones Risk Return
