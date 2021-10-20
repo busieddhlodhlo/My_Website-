@@ -99,11 +99,11 @@ params:
         url: blogs/bikes
       - image: write.jpg
         subtitle: Using words to shape thoughts on Medium
-        title: Reading & writing
+        title: Read my thoughts?
         url: https://medium.com/@busiedlodlo/
 #      - image: pic06.jpg
-#        subtitle: Feugiat Amet Tempus
-#        title: Etiam
+#        subtitle: And some fun!
+#        title: Nature
 #        url: blogs/ipsum
   two:
     buttonText: Get Started
