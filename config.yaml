@@ -90,8 +90,8 @@ params:
         title: CFA Equity Research Challenge
         url: blogs/tempus
       - image: riskret.jpg
-        subtitle: An analysis of the Dow Jone risk return metrics
-        title: Dow Jone Risk Return
+        subtitle: An analysis of the JDIA risk return metrics
+        title: Dow Jones Risk Return
         url: https://busie-portfolio.netlify.app/blogs/risk_return/
       - image: pic04.jpg
         subtitle: Nisl Sed Aliquam
