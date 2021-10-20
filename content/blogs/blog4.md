@@ -7,7 +7,7 @@ description: I come from Plumtree, a small town in Zimbabwe. I studied Finance w
 draft: false
 keywords: ""
 slug: aliquam
-image: prof.jpg
+image: professional.jpg
 title: About me
 ---
 ## Bio
