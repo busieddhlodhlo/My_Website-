@@ -90,12 +90,12 @@ params:
         title: CFA Equity Research Challenge
         url: https://drive.google.com/file/d/1vtOgU4zUJPehAopv1Jj_XWCsiXAxgvxG/view?usp=sharing
       - image: riskret.jpg
-        subtitle: An analysis of the JDIA risk return metrics
+        subtitle: Looking into the JDIA risk return metrics
         title: Dow Jones Risk Return
         url: https://busie-portfolio.netlify.app/blogs/risk_return/
       - image: bikes.jpg
-        subtitle: Looking into Tfl bike sharing in the UK
-        title: Bike rentals
+        subtitle: An analysis of Tfl bike sharing in the UK
+        title: UK Tfl bike rentals
         url: blogs/bikes
 #      - image: pic05.jpg
 #        subtitle: Ipsum Dolor Sit Amet
