@@ -6,7 +6,7 @@ googleAnalytics: ''
 disqusShortname: ''
 params:
   banner:
-    buttonText: Get Started
+    buttonText: Let's start!
     subtitle: |-
       I am a Masters in Financial Analysis student 
       at London Business School.
@@ -61,7 +61,7 @@ params:
   name: Your name
   navigation:
     button1:
-      - name: Get Started
+      - name: Let's start!
         url: blogs
     button2:
       - name: Log In
