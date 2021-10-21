@@ -84,7 +84,7 @@ params:
       - image: small.jpg
         subtitle: Short biography & CV
         title: About me
-        url: blogs/aliquam
+        url: blogs/aboutme
       - image: padenga.png
         subtitle: I co-authored a research report on a publicly listed company operating in the aquaculture industry.
         title: CFA Equity Research Challenge
