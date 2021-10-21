@@ -82,7 +82,7 @@ params:
     enable: yes
     showcase:
       - image: small.jpg
-        subtitle: Short biography
+        subtitle: Short biography & CV
         title: About me
         url: blogs/aliquam
       - image: padenga.png
