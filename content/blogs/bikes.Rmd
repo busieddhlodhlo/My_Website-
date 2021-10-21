@@ -133,9 +133,6 @@ plot <- bike_actual_df %>%
   scale_y_continuous(labels = comma)
   
 plot
-  
-
-
 ```
 
 The second one looks at percentage changes from the expected level of weekly rentals. The two grey shaded rectangles correspond to Q2 (weeks 14-26) and Q4 (weeks 40-52).
@@ -206,4 +203,3 @@ plot
 Should you use the mean or the median to calculate your expected rentals? Why?
 
 If we need to find out the expected value, it always means the long term average or mean. Depending on the distribution and skewness of the data, mean can be a better estimate when the data is left or right skewed, or when the standard deviations can cancel each other off.
-
