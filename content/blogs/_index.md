@@ -1,9 +1,9 @@
 ---
 date: "2017-10-31T22:27:21-05:00"
 draft: false
-image: pic02.jpg
+image: beach.jpg
 slug: blogs
-title: Background
+title: Lets start here!
 ---
 
-My background in a minute.
+Reading time: 5 minutes

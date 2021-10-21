@@ -69,7 +69,7 @@ params:
     links:
       - name: Home
         url: '#'
-      - name: Blogs
+      - name: Explore
         url: blogs
 #      - name: Generic Blog
 #        url: blogs/ipsum
