@@ -81,7 +81,7 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: proflandscape.jpg
+      - image: proflandscape.jpeg
         subtitle: Short biography
         title: About me
         url: blogs/aliquam
