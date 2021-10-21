@@ -6,7 +6,7 @@ date: "2017-10-31T22:42:51-05:00"
 description: I come from Plumtree, a small town in Zimbabwe. I studied Finance with Accounting Minor at Solusi University and was part of my school’s CFA Equity Research Challenge Team. We researched on a Zimbabwean-domiciled business operating in the aquaculture industry and presented an investment recommendation before a panel of judges. I worked in Alternative Investments, NPOs and agricultural engineering and have volunteered at a local home-school. I would like to work in Investment Management where I can contribute to improving the livelihoods after completing the Masters programme at LBS.
 draft: false
 keywords: ""
-slug: aboutme
+slug: aliquam
 image: small.jpg
 title: About me
 ---
