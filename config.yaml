@@ -93,10 +93,10 @@ params:
         subtitle: Looking into the JDIA risk return metrics.
         title: Dow Jones Risk Return
         url: https://busie-portfolio.netlify.app/blogs/risk_return/
-      - image: bikes.jpg
-        subtitle: An analysis of Tfl bike sharing in the UK.
-        title: UK Tfl bike rentals
-        url: blogs/bikes
+#      - image: bikes.jpg
+#        subtitle: An analysis of Tfl bike sharing in the UK.
+#        title: UK Tfl bike rentals
+#        url: blogs/bikes
       - image: plain.jpg
         subtitle: My face on the university magazine cover page.
         title: Once upon a moment of fame!
